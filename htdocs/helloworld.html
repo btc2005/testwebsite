@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<title>Sales by Brendan Carroll</title>
+<div align="center"><h1> Sales </h1>
+Which are you looking for?
+<form method="post" action="/cgi-bin/serch.cgi" value="search">
+<input type="checkbox" name="customers" value="customers">Customers<br>
+<input type="checkbox" name="orders" value="orders">Orders <br>
+<input type="checkbox" name="products" value="products">Products <br>
+<input type="submit" value="Search"></br>
+</form>
+<td>
+<form action="/cgi-bin/cust.cgi">
+<input type="submit" value="Add Customer"></form>
+<form action="/cgi-bin/orduh.cgi">
+<input type="submit" value="Add Order">
+</form>
+<form action="/cgi-bin/prod.cgi">
+<input type="submit" value="Add Product">
+</form>
+</td>
+<form action="/cgi-bin/optimalquery.cgi">
+<input type="submit" value="View All">
+</form>
