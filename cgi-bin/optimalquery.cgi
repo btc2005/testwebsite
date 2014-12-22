@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 use DBI;
+use CGI qw(:standard);
 use CGI::OptimalQuery;
 my $oq = CGI::OptimalQuery->new({
 	dbh=>DBI->connect(
@@ -14,26 +15,29 @@ my $oq = CGI::OptimalQuery->new({
 
 select => {
 'ORDERS' => ['orders', "orders.order_num", "Order #"],
-#'OCNUM' => ['orders', "orders.customer_num", "Order CNUM"],
 'STATUS' => ['orders', "orders.status", "Status"],
-
-#'YEAR' => ['products', "products.year", "Year"],
-#'MAKE' => ['products', "products.make", "Make"],
-#'MODEL' => ['products', "products.model", "Model"],
-#'PRICE' => ['products', "products.price", "Price"],
+'PNUM' => [ 'products', "products.product_num", "Product ID"],
+'PRICE' => ['products', "products.price", "Price"],
 'NAME' => ['customers', "customers.customer_name", "Name"],
 'CNUM' => ["customers", "customers.customer_num", "Customer #"],
 
 },
-show => ['NAME', 'ORDERS', 'CNUM'],
+show => ['NAME', 'ORDERS', 'CNUM', 'POPID', 'PRICE'],
+
 
 joins => {
 "orders" => [undef, "orders"], 
-"customers" => ['orders', "left join customers on (customers.customer_num = orders.customer_num)", undef, {new_cursor => 1} ]
+"customers" => ['orders', "left join customers on (customers.customer_num = orders.customer_num)", undef, {new_cursor => 1} ],
+"products" => [undef, "products"],
+"p_o" => ['products', "left join p_o on (p_o.product_num=products.product_num) where p_o.product_num=p_o.order_num and price != 0" ]
 },
 	options => {
-		'CGI::OptimalQuery::InteractiveQuery' => {
-			color => '#660033' 
-}}}
+		'CGI::OptimalQuery::InteractiveQuery' =>
+ 			{ color => '#060033' }
+		}
+	}
 );
 $oq -> output();
+print "<center>";
+print button(-value=>'Home', onClick=>"window.location.href='http://btc-cems.sr.unh.edu/helloworld.html'");
+
