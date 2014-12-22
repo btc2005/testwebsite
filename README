@@ -1,7 +1,7 @@
 # Customers by Brendan Carroll Dec 2014
 # This website was used as a test in order to gain knowledge on programming
 # in order to do tasks
-# to use this website go to http://btc-cems.sr.unh.edu/
+# (must be from a 132.177.*.* address) to use this website go to http://btc-cems.sr.unh.edu/
 # select the link leading to the test website
 # A bunch of options will display that add records into a mysql table
 # using optimalquery you can display them or just plain cgi
